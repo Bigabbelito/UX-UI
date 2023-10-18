@@ -1,15 +1,23 @@
-// import { useState } from 'react'
-
 import './App.css'
+import  { useState } from 'react';
+import LangChart from './components/LangChart';
+import MonthChart from './components/MonthChart';
+import Navigation from './components/Nav';
 
 function App() {
-  // const [count, setCount] = useState(0)
+  const [activeTab, setActiveTab] = useState('language');
 
   return (
-    <main>
-    <h1>Charts</h1>
-    </main>
-  )
+    <div>
+      <h1>MovieFlex Statistik</h1>
+      <Navigation setActiveTab={setActiveTab} />
+      {activeTab === 'language' ? (
+        <LangChart />
+      ) : (
+        <MonthChart />
+      )}
+    </div>
+  );
 }
 
-export default App
+export default App;

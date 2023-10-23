@@ -1,78 +1,83 @@
-import React, { useState, useEffect } from "react";
+
 import documentariesData from "../documentaries.json";
 import featureFilmsData from "../feature-films.json";
-import specialsData from "../specials.json";
-import generateRandomHexColors from "./colorGen.js";
-import { useRecoilState } from "recoil";
-import { currentChartSize } from "./atom";
+import specialsdata from "../specials.json";
 
-export function getLanguageconfig() {
-    const [movieData, setMovieData] = useState({ labels: [], data: [] });
-    const [backgroundColor, setBackgroundColor] = useState([]);
 
-    useEffect(() => {
-        const combinedAllMovies = [...documentariesData, ...featureFilmsData, ...specialsData];
-
-        const languageCounter = {};
-        combinedAllMovies.forEach((movie) => {
-            const language = movie.Language;
-            if (languageCounter[language]) {
-                languageCounter[language] += 1;
-            } else {
-                languageCounter[language] = 1;
-            }
-        });
-        const labels = Object.keys(languageCounter);
-        const data = Object.values(languageCounter);
-        setMovieData({ labels, data });
-        const NewBackgroundColor = generateRandomHexColors(labels.length);
-        setBackgroundColor(NewBackgroundColor);
-    }, []);
-
-    return {
-        labels: movieData.labels,
-        datasets: [
-            {
-                data: movieData.data,
-                backgroundColor: backgroundColor,
-            },
-        ],
+export function getConfig(sortOrder) {
+    // Kontrollera att data innehåller de nödvändiga kategorierna
+    if ( !documentariesData || !featureFilmsData || !specialsdata) {
+      throw new Error(
+        "Invalid data structure. Make sure it contains Specials, Feature, and Dokumentaries."
+      );
+    }
+  
+    const languageCounts = {
+      English: 0,
+      Spanish: 0,
+      Polish: 0,
+      Tamil: 0,
+      Japanese: 0,
+      Korean: 0,
+      French: 0,
+      Italian: 0,
+      Indonesian: 0,
+      German: 0,
+      Swedish: 0,
+      Dutch: 0,
+      Turkish: 0,
+      Portuguese: 0,
+      Pashto: 0,
+      Thai: 0,
     };
-}
-
-export function languageOptions() {
-    const [chartSize] = useRecoilState(currentChartSize);
+  
+    // Räkna språken för varje kategori Specials, Feature och Dokumentaries 
+    specialsdata.forEach((movie) => {
+      languageCounts[movie.Language]++;
+    });
+  
+    featureFilmsData.forEach((movie) => {
+      languageCounts[movie.Language]++;
+    });
+  
+    documentariesData.forEach((movie) => {
+      languageCounts[movie.Language]++;
+    });
+  
+    // Sortera språkdatan i fallande ordning
+    const sortedCounts = Object.entries(languageCounts)
+      .sort((a, b) => (sortOrder === "asc" ? a[1] - b[1] : b[1] - a[1]))
+      .reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {});
+  
+    const labels = Object.keys(sortedCounts);
+    const counts = Object.values(sortedCounts);
+  
     return {
-        respnsive: true,
-        plugins: {
-            title:{
-                display: true,
-                text: "Antal filmer per språk",
-                font:{
-                    size: 25
-                },
-                position: "top",
-                color:"black",
-            },
-            layout:{
-                autoPadding: true,
-            },
-            legend: {
-                displayed: true,
-                position: "bottom",
-                labels: {
-                    padding: 5,
-                    boxWidth: 15,
-                    boxHeight: 15,
-                    font: {
-                        size: 18,
-                        weight: "bold"
-                    },
-                    color:"black",
-                },
-                rtl: true,
-            },
+      labels,
+      datasets: [
+        {
+          label: "Language Counts",
+          data: counts,
+          backgroundColor: [
+            "rgba(0, 255, 0, 0.8)",
+            "rgba(0, 0, 255, 0.8)",
+            "rgba(255, 0, 0, 0.8)",
+            "rgba(255, 255, 0, 0.8)",
+            "rgba(255, 0, 255, 0.8)",
+            "rgba(0, 255, 255, 0.8)",
+            "rgba(255, 165, 0, 0.8)",
+            "rgba(128, 0, 128, 0.8)",
+            "rgba(255, 192, 203, 0.8)",
+            "rgba(255, 215, 0, 0.8)",
+            "rgba(0, 128, 0, 0.8)",
+            "rgba(255, 69, 0, 0.8)",
+            "rgba(255, 0, 128, 0.8)",
+            "rgba(0, 255, 128, 0.8)",
+            "rgba(128, 128, 0, 0.8)",
+            "rgba(128, 0, 0, 0.8)",
+          ],
+          borderColor: "rgba(0, 0, 0, 0.5)",
         },
-        hoverOffset: 15,
+      ],
     };
-}
+  }

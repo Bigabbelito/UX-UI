@@ -1,7 +1,7 @@
 .circle-container{
     display: flex;
     justify-content: center;
-    background-color: rgb(37, 111, 120);
+    background-color: rgb(45, 37, 120);
     padding: 4em 0;
     height: 100vh;
 }

@@ -1,0 +1,33 @@
+.genre-circle-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    gap: 1em;
+    height: 100vh;
+    position: relative;
+    background-color: rgb(249, 191, 235);
+    padding-top: 1em;
+    border: 2px solid silver;
+}
+
+.genre-circle{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    padding: 2em;
+}
+
+.doughnut-genre{
+    background-color: rgb(102, 37, 120);
+    border-radius: 20px;
+    border: 2px solid silver;
+    display: flex;
+    justify-content: center;
+    width: 600px;
+    min-height:55vh ;
+    transition: all 2s ease-in;
+}

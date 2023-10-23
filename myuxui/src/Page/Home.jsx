@@ -11,7 +11,7 @@ import { isMovieHit } from "../data/config/atom";
 
 
 export default function Home() {
-    // const [isThereMovie, setIsMovie] = useRecoilState(isMovieHit);
+    const [isThereMovie, setIsMovie] = useRecoilState(isMovieHit);
     return (
         <div className="home-container">
             {/* <SearchMovie /> */}

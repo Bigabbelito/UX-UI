@@ -1,5 +1,5 @@
 import { RecoilRoot } from 'recoil'
-import Sida from './page/sida'
+import Sida from './Page/Home'
 // import TopBar from './components/top/TopBar'
 
 function App() {

@@ -44,7 +44,7 @@ const LanguageChart = () => {
             animate={mainControls}
             transition={{duration: 0.5, delay: .25}}
         >
-                <button className="change-size-btn" onClick={changeSize}>
+                <button className="change-btn" onClick={changeSize}>
                     Ändra storlek
                 </button>
                 <div className={chartSize}>

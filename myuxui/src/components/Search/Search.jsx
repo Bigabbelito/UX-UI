@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import documentariesData from "../../data/documentaries.json";
 import featureFilmsData from "../../data/feature-films.json";
 import specialsdata from "../../data/specials.json";
 import "../Search/Search.css";
+import './Search.css'
 
-// Kombinera alla filmer från olika JSON-filer till en enda array
+
 const allMovies = [
   ...documentariesData,
   ...featureFilmsData,
@@ -21,7 +22,7 @@ function Search() {
 
     const lowercaseSearchTerm = newSearchTerm.toLowerCase();
 
-    // Filtrera filmer baserat på söktermen i alla filmer
+    
     const filteredMovies = allMovies.filter((movie) => {
       const lowercaseTitle = movie.Title.toLowerCase();
       return lowercaseTitle.includes(lowercaseSearchTerm);
@@ -31,17 +32,17 @@ function Search() {
   };
 
   return (
-    <div>
+    <div className="movie-card">
       <h3>Sökfälte</h3>
-      <input
+      <input className="input-container"
         type="text"
-        placeholder="Sök Efter Titlen"
+        placeholder="Sök efter titlen"
         value={searchTerm}
         onChange={handleSearchChange}
       />
 
       {searchTerm.trim() === "" ? (
-        <p>Inga Resultat</p>
+        <p>Inga resultat</p>
       ) : (
         searchResult.map((movie, index) => (
           <div key={index} className="movie-card">

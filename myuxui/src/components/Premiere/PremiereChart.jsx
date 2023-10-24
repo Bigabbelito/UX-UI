@@ -1,4 +1,4 @@
-import {Chart as ChartJS,ArcElement,Tooltip,Legend,CategoryScale,LinearScale,BarElement,Title} from "chart.js";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title } from "chart.js";
 import { Bar } from "react-chartjs-2";
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title);
 import "./premiereChart.css";
@@ -17,8 +17,8 @@ const PrimiereChart = () => {
     useEffect(() => {
         if (isInView) {
             mainControls.start("visible");
-        }
-    }, [isInView]);
+        }[isInView]
+    }, );
 
     return (
         <div className="bar-container" ref={ref}>
@@ -30,7 +30,7 @@ const PrimiereChart = () => {
                 }}
                 initial="hidden"
                 animate={mainControls}
-                transition={{ duration: 2, delay: 0.25 }}
+                transition={{ type: "tween", duration: 2, ease: "easeInOut" }} 
             >
                 <Bar data={chartConfig} options={chartOptions} />
             </motion.div>

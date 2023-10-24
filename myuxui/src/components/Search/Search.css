@@ -1,19 +1,60 @@
 /* Search.css */
+
+/* Container för inmatningsfält */
+.input-container {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(129, 144, 126, 0.224);
+  padding: 0.3em;
+}
+
+/* Animerad bakgrundsfärg vid hover */
+.input-container:hover {
+  animation-name: color;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+/* Nyckelram för animerad bakgrundsfärg */
+@keyframes color {
+  0% {
+    background-color: rgba(67, 229, 210, 0.517);
+  }
+  100% {
+    background-color: rgba(45, 135, 170, 0.464);
+  }
+}
+
+/* Inmatningsfält */
+.search-input {
+  border-radius: 10px;
+  height: 2em;
+  margin: 0.2em;
+  padding-left: 0.3em;
+  border: 1px solid #ccc; /* Lägg till en tunn ram */
+}
+
+/* Sökresultatkort */
 .movie-card {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: 10px;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .movie-card h2 {
-    font-size: 18px;
-    margin: 0;
-  }
-  
-  .movie-card p {
-    margin: 5px 0;
-  }
-  
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center; 
+  margin: 10px auto; 
+}
+
+/* Rubrik för sökresultat */
+.movie-card h2 {
+  font-size: 18px;
+  margin: 10px 0; 
+  color: #333; 
+}
+
+/* Övrig information i sökresultat */
+.movie-card p {
+  margin: 5px 0;
+  color: #666; 
+}

@@ -6,6 +6,7 @@ import Premiere from "./components/Premiere/PremiereChart";
 import Length from "./components/Length/LengthChart";
 import Genre from "./components/Genre/Genre";
 import Search from "./components/Search/Search";
+
 import HuvudBar from "./components/Huvud/Huvud";
 
 function App() {
@@ -45,23 +46,23 @@ function App() {
     <HuvudBar/>
       <Search/>
       <section className="btn-container">
-        <button className="genre-btn" onClick={toggleGenre}>
-          Visa Genre 
+        <button className="gradient-btn" onClick={toggleGenre}>
+          Visa genre 
         </button>
         {isGenreVisible && <Genre onClose={closeGenre} />}
 
-        <button className="length-btn" onClick={toggleLength}>
-          Visa Längden 
+        <button className="gradient-btn" onClick={toggleLength}>
+          Visa längden 
         </button>
         {isLengthVisible && <Length onClose={closeLength} />}
 
-        <button className="premiere-btn" onClick={togglePremiere}>
-          Visa Premiär
+        <button className="gradient-btn" onClick={togglePremiere}>
+          Visa premiär
         </button>
         {isPremiereVisible && <Premiere onClose={closePremiere} />}
 
-        <button className="special-btn" onClick={toggleLang}>
-          Visa Språk
+        <button className="gradient-btn" onClick={toggleLang}>
+          Visa språk
         </button>
         {isLangVisible && <LangChart onClose={closeLang} />}
 

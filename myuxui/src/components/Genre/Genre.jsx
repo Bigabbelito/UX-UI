@@ -3,10 +3,10 @@ import { Pie } from "react-chartjs-2";
 import {Chart as ChartJS,ArcElement,Tooltip,Legend,CategoryScale,LinearScale,BarElement,} from "chart.js";
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement);
 import "./genre.css";
-import { getGenreconfig } from "../../data/config/genredata";
+import { GetGenreconfig } from "../../data/config/genredata";
 
 const Genre = ({ onClose }) => {
-    const genreConfig = getGenreconfig();
+    const genreConfig = GetGenreconfig();
   
 
   return (
@@ -15,7 +15,7 @@ const Genre = ({ onClose }) => {
       <button className="close-button" onClick={onClose}>
           &times; 
         </button>
-        <p>Visa Antal Filmer I Varje Genre</p>
+        <p>Visa antal filmer i varje genre</p>
         <Pie className="piechart" data={genreConfig} />
       </div>
     </div>

@@ -12,13 +12,13 @@ const FilmLengthChart = () => {
 
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
-    const mainControls = useAnimation();
-
+    // const mainControls = useAnimation();
+    const anticipationControls = useAnimation();
     useEffect(() => {
         if (isInView) {
-            mainControls.start("visible");
+            anticipationControls.start("visible");
         }
-    }, [isInView]);
+    }, [isInView, anticipationControls]);
 
     return (
         <div className="line-container" ref={ref}>
@@ -29,7 +29,7 @@ const FilmLengthChart = () => {
                     visible: { opacity: 1, x: 0 },
                 }}
                 initial="hidden"
-                animate={mainControls}
+                animate={anticipationControls}
                 transition={{ duration: 2, delay: 0.25 }}
             >
                 <Line data={chartData.data} options={chartOptions} />
